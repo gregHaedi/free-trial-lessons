@@ -1,0 +1,51 @@
+.App {
+  position: relative;
+	width: auto;
+	max-width: 800px;
+	margin: 0px auto;
+	color: rgb(45, 47, 61);
+}
+form { display: inline; }
+select, textarea {
+  padding: 3px;
+  font-size: 14px;
+}
+option { color: rgb(45, 47, 61); }
+textarea { width: 100%; }
+h1 {
+  font-size: 24px;
+  font-weight: 800;
+}
+h2 {
+	font-size:20px;
+	font-weight:800;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0px;
+  width: 100%;
+}
+th {
+  font-size:15px;
+  padding: 3px;
+  background-color: #fff;
+}
+td {
+  padding: 3px;
+  font-size:14px;
+  text-align: center;
+  vertical-align: top;
+}
+tr:nth-of-type(odd) { background-color: #dadada; }
+p { font-size:14px; }
+.tLeft { text-align: left; }
+.hint {
+  font-size:16px;
+  margin-left:10px;
+  font-weight:600;
+}
+.lc-list { margin-bottom:20px; }
+@media (max-width: 410px)
+{
+  table { display: inline-grid; }
+}
