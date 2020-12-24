@@ -24,10 +24,11 @@ export function load(callback) { // load the events from the spreadsheet
           let events = []
           let currentDate = getISOdate()
 
-          data.forEach(function(event, index, array) {
+          data.forEach(function(event, index) {
             if (event[3] > currentDate) {
               events.push(
                 {
+                  sheetId: index,
                   lcid: event[0].padStart(6, "0"), // leading zeros could/will be ignored in the sheet, but we need it!
                   locationName: event[1],
                   language: event[2],

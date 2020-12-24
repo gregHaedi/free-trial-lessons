@@ -9,8 +9,8 @@ form { display: inline; }
 select, textarea {
   padding: 3px;
   font-size: 14px;
+  color: rgb(45, 47, 61);
 }
-option { color: rgb(45, 47, 61); }
 textarea { width: 100%; }
 h1 {
   font-size: 24px;
@@ -44,7 +44,16 @@ p { font-size:14px; }
   margin-left:10px;
   font-weight:600;
 }
-.lc-list { margin-bottom:20px; }
+.list-container {
+  clear: both;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.lc-list, .lc-info { 
+  float: left;
+  display: inline-flex;
+  margin: 0 1rem 1rem 0;
+}
 @media (max-width: 410px)
 {
   table { display: inline-grid; }

@@ -19,14 +19,18 @@ class EventList extends Component {
   onLoad = (data, error) => {
     if (data) {
       // consolidate lcid and location name options and sort them
-      let unique = {}
+      let unique = []
+      let sortedOptions = []
       for (let item of data.events) {
         unique[item.lcid] = item.locationName
       }
+      sortedOptions = Object.entries(unique).sort((a, b) => a[1].localeCompare(b[1]))
       this.setState({
         events: data.events,
         results: data.events.length,
-        options: Object.entries(unique).sort((a, b) => a[1].localeCompare(b[1]))
+        options: sortedOptions,
+        selectedId: sortedOptions[0][0],
+        selectedName: sortedOptions[0][1]
       })
     } else {
       this.setState({ error })
@@ -60,8 +64,18 @@ class EventList extends Component {
   );
 
   handleChange = e => {
-    // const selected = e.target.value;
-    console.log(e.target.value);
+    this.setState({
+      selectedId: e.target.value,
+      selectedName: e.target.options[e.target.selectedIndex].text
+    })
+  }
+
+  renderEvents = () => {
+  };
+
+  lcInfo = () => {
+    const {selectedId, selectedName} = this.state
+    if (selectedId) return <span><strong>LCID:</strong> { selectedId }, <strong>Location:</strong> { selectedName } </span>
   }
 
   render() {
@@ -77,7 +91,10 @@ class EventList extends Component {
 
         <h1>Free Trial Lessons<span className="hint">{results} item(s)</span></h1>
 
-        <div className="lc-list">{ this.renderLClist() }</div>
+        <div className="list-container">
+          <div className="lc-list">{ this.renderLClist() }</div>
+          <div className="lc-info">{ this.lcInfo() }</div>
+        </div>
 
         <table>
           <thead>
@@ -86,9 +103,9 @@ class EventList extends Component {
             </tr>
           </thead>
           <tbody>
-            { events.map((event,i) => (
+            { events.map(event => (
             <tr>
-              <td>{ i+1 }</td>
+              <td>{ event.sheetId }</td>
               <td>{ event.lcid }</td>
               <td className="tLeft">{ event.locationName }</td>
               <td className="tLeft">{ languageMap[event.language] }</td>
